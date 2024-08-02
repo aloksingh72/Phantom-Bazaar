@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo2.png"
+import { FaCartShopping } from "react-icons/fa6";
 
 function Navbar() {
   return (
@@ -13,7 +14,7 @@ function Navbar() {
             <img src={logo} alt="" className="w-[100px] h-[50px]"/></div> {/* Placeholder for an image */}
         </div>
         {/* Right side links */}
-        <div className="flex space-x-4">
+        <div className="flex space-x-10 mr-7">
           <Link
             to="/shop"
             className="text-lg font-semibold hover:scale-125 hover:text-yellow-300 transition duration-200 ease-in-out"
@@ -28,9 +29,10 @@ function Navbar() {
           </Link>
           <Link
             to="/cart"
-            className="text-lg font-semibold hover:scale-125 hover:text-yellow-300 transition duration-200 ease-in-out"
+            className="text-lg flex  items-center justify-center gap-2  font-semibold hover:scale-125 hover:text-yellow-300 transition duration-200 ease-in-out"
           >
             Cart
+            <FaCartShopping />
           </Link>
         </div>
       </div>

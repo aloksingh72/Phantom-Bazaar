@@ -8,6 +8,7 @@ function Shop() {
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(null);
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   // API fetching for categories-------------------
   useEffect(() => {
@@ -16,7 +17,7 @@ function Shop() {
         const response = await axios.get(
           "https://fakestoreapi.com/products/categories"
         );
-        setCategories(response.data);
+        setCategories(["All",...response.data]);
         setLoading(false);
       } catch (err) {
         setError(err);
@@ -32,6 +33,7 @@ function Shop() {
       try {
         const response = await axios.get("https://fakestoreapi.com/products");
         setProducts(response.data);
+        setFilteredProducts(response.data);
         setLoading(false);
       } catch (err) {
         setError(err);
@@ -40,6 +42,18 @@ function Shop() {
     };
     getProducts();
   }, []);
+  // handle categories function 
+  const handleCategoryClick = (category) => {
+    if(category === "All"){
+      setFilteredProducts(products);
+    }else{
+      const filtered = products.filter(product => product.category === category);
+      setFilteredProducts(filtered);
+    }
+    
+  };
+  // const filter = product.filter(product => product.category === category);
+  //  setfilteredproducts(filtered);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -47,14 +61,14 @@ function Shop() {
   return (
     <div className="flex flex-row ">
       <div className="w-[190px]">
-        <h2>Categories</h2>
+        <h2 className="font-bold text-lg mt-7 mb-3 ml-5">Categories</h2>
         {categories.map((category, index) => (
-          <Category key={index} category={category} />
+          <Category key={index} category={category} onCategoryClick={handleCategoryClick} />
         ))}
       </div>
       <div className="grid grid-cols-4 py-5  ml-[90px] gap-y-3">
        
-        {products.map((product, index) => (
+      {filteredProducts.map((product, index) => (
           <Product key={index} product={product} />
         ))}
       </div>
