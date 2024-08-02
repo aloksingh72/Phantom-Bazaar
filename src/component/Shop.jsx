@@ -52,7 +52,7 @@ function Shop() {
           <Category key={index} category={category} />
         ))}
       </div>
-      <div className="grid grid-cols-3 py-5  ml-[90px] gap-y-3">
+      <div className="grid grid-cols-4 py-5  ml-[90px] gap-y-3">
        
         {products.map((product, index) => (
           <Product key={index} product={product} />

@@ -1,30 +1,38 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo2.png"
 
 function Navbar() {
   return (
-    <div className="bg-gradient-to-r rounded-b-lg from-blue-500 to-purple-500 text-white  top-0  shadow-lg z-50">
-      <div className="flex  flex-row justify-between  p-4">
-        <Link
-          to="/"
-          className="text-lg font-semibold hover:scale-125 hover:text-yellow-300 transition duration-200 ease-in-out "
-        >
-          Shop
-        </Link>
-
-        <Link
-          to="/admin"
-          className="text-lg font-semibold hover:scale-125 hover:text-yellow-300 transition duration-200 ease-in-out"
-        >
-          Admin
-        </Link>
-
-        <Link
-          to="/cart"
-          className="text-lg font-semibold hover:scale-125 hover:text-yellow-300 transition duration-200 ease-in-out"
-        >
-          Cart
-        </Link>
+    <div className="bg-gradient-to-r rounded-b-lg from-blue-500 to-purple-500 text-white top-0 shadow-lg z-50">
+      <div className="flex justify-between items-center p-4">
+        {/* Left side placeholder */}
+        <div className="flex items-center space-x-4">
+          <div className=" ">
+            
+            <img src={logo} alt="" className="w-[100px] h-[50px]"/></div> {/* Placeholder for an image */}
+        </div>
+        {/* Right side links */}
+        <div className="flex space-x-4">
+          <Link
+            to="/shop"
+            className="text-lg font-semibold hover:scale-125 hover:text-yellow-300 transition duration-200 ease-in-out"
+          >
+            Shop
+          </Link>
+          <Link
+            to="/admin"
+            className="text-lg font-semibold hover:scale-125 hover:text-yellow-300 transition duration-200 ease-in-out"
+          >
+            Admin
+          </Link>
+          <Link
+            to="/cart"
+            className="text-lg font-semibold hover:scale-125 hover:text-yellow-300 transition duration-200 ease-in-out"
+          >
+            Cart
+          </Link>
+        </div>
       </div>
     </div>
   );
