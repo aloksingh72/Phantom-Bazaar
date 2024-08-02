@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
-function Category() {
+function Category({ category }) {
   return (
-    <div>hello world</div>
-  )
+    <div className="w-full ">
+      <h3 className="w-[90px]">{category}</h3>
+    </div>
+  );
 }
 
-export default Category
+export default Category;
