@@ -16,7 +16,7 @@ function Navbar() {
         {/* Right side links */}
         <div className="flex space-x-10 mr-7">
           <Link
-            to="/shop"
+            to="/"
             className="text-lg font-semibold hover:scale-125 hover:text-yellow-300 transition duration-200 ease-in-out"
           >
             Shop
