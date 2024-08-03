@@ -3,7 +3,7 @@ import axios from "axios";
 import Category from "./pages/users/Category";
 import Product from "./pages/users/Product";
 import Navbar from "./Navbar";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 function Shop() {
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState([]);
@@ -55,7 +55,7 @@ const [cartItems,setCartItems] = useState([]);
     }
     
   };
-  
+  // handle add to cart function
 const handleAddToCart = (product)=>{
   setCartItems((prevItems)=>{
     if(prevItems.includes(product)){
@@ -73,7 +73,7 @@ const handleAddToCart = (product)=>{
 
   return (
     <div>
-      <Navbar cartCount={cartItems.length}/>
+      {/* <Navbar cartCount={cartItems.length}/> */}
         <div className="flex flex-row ">
       <div className="w-[190px]">
         <h2 className="font-bold text-lg mt-7 mb-3 ml-5">Categories</h2>
@@ -87,6 +87,7 @@ const handleAddToCart = (product)=>{
           <Product key={index} product={product} handleAddToCart={handleAddToCart} cartItems={cartItems} />
         ))}
       </div>
+
     </div>
     </div>
   
