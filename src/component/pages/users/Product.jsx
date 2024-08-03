@@ -1,7 +1,7 @@
 import React from "react";
 import AddToCart from "./AddToCart";
 
-function Product({ product }) {
+function Product({ product,handleAddToCart, cartItems }) {
   return (
     // outer class div for product component
     <div className="grid grid-cols-4   ">
@@ -23,12 +23,12 @@ function Product({ product }) {
            />
         </div>
         {/* price and button div */}
-        <div className="flex justify-items-center gap-14 mt-5 ">
+        <div className="flex justify-between gap-14 mt-5 ">
         <div>
           <p><span>₹</span>{product.price}</p>
         </div>
         <div>
-         <AddToCart product={product}/>
+         <AddToCart product={product} handleAddToCart={handleAddToCart} cartItems={cartItems}/>
         </div>
         </div>
       </div>

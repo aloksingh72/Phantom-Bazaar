@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo2.png"
 import { FaCartShopping } from "react-icons/fa6";
 
-function Navbar() {
+function Navbar({cartCount}) {
   return (
     <div className="bg-gradient-to-r rounded-b-lg from-blue-500 to-purple-500 text-white top-0 shadow-lg z-50">
       <div className="flex justify-between items-center p-4">
@@ -33,6 +33,11 @@ function Navbar() {
           >
             Cart
             <FaCartShopping />
+            {cartCount > 0 && (
+              <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                {cartCount}
+              </span>
+            )}
           </Link>
         </div>
       </div>

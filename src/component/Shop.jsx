@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Category from "./pages/users/Category";
 import Product from "./pages/users/Product";
+import Navbar from "./Navbar";
 
 function Shop() {
   const [loading, setLoading] = useState(true);
@@ -9,6 +10,7 @@ function Shop() {
   const [error, setError] = useState(null);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+const [cartItems,setCartItems] = useState([]);
 
   // API fetching for categories-------------------
   useEffect(() => {
@@ -42,6 +44,7 @@ function Shop() {
     };
     getProducts();
   }, []);
+
   // handle categories function 
   const handleCategoryClick = (category) => {
     if(category === "All"){
@@ -52,14 +55,26 @@ function Shop() {
     }
     
   };
-  // const filter = product.filter(product => product.category === category);
-  //  setfilteredproducts(filtered);
+  
+const handleAddToCart = (product)=>{
+  setCartItems((prevItems)=>{
+    if(prevItems.includes(product)){
+      return prevItems.filter((item)=> item !== product);
+    }
+    else{
+      return[...prevItems, product];
+    }
+  });
+};
+
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="flex flex-row ">
+    <div>
+      <Navbar cartCount={cartItems.length}/>
+        <div className="flex flex-row ">
       <div className="w-[190px]">
         <h2 className="font-bold text-lg mt-7 mb-3 ml-5">Categories</h2>
         {categories.map((category, index) => (
@@ -69,10 +84,12 @@ function Shop() {
       <div className="grid grid-cols-4 py-5  ml-[90px] gap-y-3">
        
       {filteredProducts.map((product, index) => (
-          <Product key={index} product={product} />
+          <Product key={index} product={product} handleAddToCart={handleAddToCart} cartItems={cartItems} />
         ))}
       </div>
     </div>
+    </div>
+  
   );
 }
 
