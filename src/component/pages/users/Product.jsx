@@ -1,4 +1,5 @@
 import React from "react";
+import AddToCart from "./AddToCart";
 
 function Product({ product }) {
   return (
@@ -27,7 +28,7 @@ function Product({ product }) {
           <p><span>₹</span>{product.price}</p>
         </div>
         <div>
-          <button className="text-gray-700 border-2 border-gray-700 rounded-full text-[12px] p-1 hover:bg-gray-700 hover:text-white transition-all duration-300 ease-in px-3 ">{false ? <p>Remove Item</p> : <p>Add to Cart</p>}</button>
+         <AddToCart product={product}/>
         </div>
         </div>
       </div>
