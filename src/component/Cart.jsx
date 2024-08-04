@@ -4,7 +4,7 @@ import { MdDeleteForever } from "react-icons/md";
 function Cart({ cartItems }) {
   return (
     <div className="flex p-4">
-      <h2 className="text-xl font-bold mb-4">Cart</h2>
+      {/* <h2 className="text-xl font-bold mb-4">Cart</h2>   */}
       {cartItems.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
