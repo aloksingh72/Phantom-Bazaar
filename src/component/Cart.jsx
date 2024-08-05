@@ -34,7 +34,9 @@ function Cart({ cartItems }) {
                     <p className=" text-green-600 ml-3 font-bold mt-14">
                       ₹{item.price}
                     </p>
-                    <MdDeleteForever className="mt-14 text-2xl ml-[350px] bg-orange-400 rounded-full" />
+                    <MdDeleteForever
+                     className="mt-14 text-2xl ml-[350px] bg-orange-400 rounded-full"
+                     onClick={()=>onRemoveFromCart(item.id)} />
                   </div>
                 </div>
               </div>

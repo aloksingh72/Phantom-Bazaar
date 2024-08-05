@@ -9,6 +9,7 @@ function Shop({ cartItems, handleAddToCart }) {
   const [error, setError] = useState(null);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  
 
   useEffect(() => {
     const getCategories = async () => {
@@ -48,6 +49,10 @@ function Shop({ cartItems, handleAddToCart }) {
     }
   };
 
+  // const handleRemoveFromCart = (itemId) => {
+  //   setCartItems(cartItems.filter((item) => item.id !== itemId));
+  // };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
@@ -61,9 +66,11 @@ function Shop({ cartItems, handleAddToCart }) {
       </div>
       <div className="grid grid-cols-4 py-5 ml-[90px] gap-y-3">
         {filteredProducts.map((product, index) => (
-          <Product key={index} product={product} handleAddToCart={handleAddToCart} cartItems={cartItems} />
+          <Product key={index} product={product}
+           handleAddToCart={handleAddToCart} cartItems={cartItems} />
         ))}
       </div>
+      {/* <Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} /> */}
     </div>
   );
 }
