@@ -71,7 +71,7 @@ function AddNewProduct() {
             />
           </label>
         </div>
-        <div>
+        <div className="">
           <p>Enter Category:</p>
           <select
             className="outline rounded-md ml-4"
@@ -85,7 +85,8 @@ function AddNewProduct() {
             ))}
           </select>
         </div>
-        <button className="border border-black w-[200px] ml-[200px] rounded-lg px-4 py-2 font-bold">
+        
+        <button className="border hover:scale-125   transition duration-200 ease-in-out border-black w-[200px] ml-[650px] rounded-lg px-4 py-2 font-bold">
           Post Data
         </button>
       </form>
