@@ -20,7 +20,7 @@ function App(){
           element={<Shop cartItems={cartItems} handleAddToCart={handleAddToCart} />}
         />
         <Route path="/admin" element={<Admin />} />
-        <Route path="/cart" element={<Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} />} />
+        <Route path="/cart" element={<Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} cartCount={cartItems.length} />} />
       </Routes>
     </div>
   );

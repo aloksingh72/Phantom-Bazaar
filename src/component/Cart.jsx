@@ -1,15 +1,17 @@
 import React from "react";
 import { MdDeleteForever } from "react-icons/md";
 
-function Cart({ cartItems,onRemoveFromCart }) {
+function Cart({ cartItems,onRemoveFromCart,cartCount }) {
 //calculate the total amount 
   const totalAmount = cartItems.reduce((acc, item) => acc + item.price, 0);
  
+  // calculate the total item in cart
+  // const totalItems  = ;
   return (
     <div className="flex p-4">
       {/* <h2 className="text-xl font-bold mb-4">Cart</h2>   */}
       {cartItems.length === 0 ? (
-        <p>Your cart is empty</p>
+        <p className="text-[40px] font-semibold text-green-600 ">Your cart is Empty</p>
       ) : (
         <ul>
           {cartItems.map((item, index) => (
@@ -55,7 +57,7 @@ function Cart({ cartItems,onRemoveFromCart }) {
       <div className="flex  ml-[250px] gap-x-[150px] flex-col">
         <p className="text-xl font-semibold text-green-600">Your Cart</p>
         <h2 className="text-[40px] font-semibold text-green-600">Summary</h2>
-        <p className="text-[20px] font-bold">Total Items:3</p>
+        <p className="text-[20px] font-bold">Total Items:{cartCount}</p>
 
         <div className="mt-[150px]">
         <p className="font-semibold text-[20px]">Total Amount:₹{totalAmount}</p>
