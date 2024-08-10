@@ -6,7 +6,7 @@ import Admin from "./component/Admin";
 import Cart from "./component/Cart";
 import Navbar from "./component/Navbar";
 import { useCart } from "./component/pages/cart/useCart";
-
+import AddNewProduct from "./component/pages/admin/addNewProduct";
 
 function App(){
   const {cartItems,handleAddToCart,handleRemoveFromCart} =useCart();
@@ -15,6 +15,7 @@ function App(){
     <div>
       <Navbar cartCount={cartItems.length} />
       <Routes>
+        <Route path="/addnewProduct" element={<AddNewProduct/>}></Route>
         <Route
           path="/"
           element={<Shop cartItems={cartItems} handleAddToCart={handleAddToCart} />}

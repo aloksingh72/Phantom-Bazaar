@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
+import { Link } from "react-router-dom";
 
 
 function Admin() {
@@ -49,7 +50,15 @@ function Admin() {
 
   return (
     <div className="outline w-[1120px] rounded-md mb-10 mx-auto p-6 mt-9">
+    <Link to="/addnewProduct">
+    <button className="rounded outline ml-2 p-1 cursor-pointer hover:bg-gray-500 transition duration-200 border w-[150px] ">
+Add new Product +
+    </button>
+    </Link>
+      {/* <div className="rounded outline ml-2 p-1 cursor-pointer hover:bg-gray-500 transition duration-200 border w-[150px] ">
+        <button></button>Add new Product +</div> */}
       <h1 className="text-4xl text-center  mb-5 underline mt-3 ">
+        
         
         All Product Details
       </h1>

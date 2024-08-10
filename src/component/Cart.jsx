@@ -5,8 +5,7 @@ function Cart({ cartItems,onRemoveFromCart,cartCount }) {
 //calculate the total amount 
   const totalAmount = cartItems.reduce((acc, item) => acc + item.price, 0);
  
-  // calculate the total item in cart
-  // const totalItems  = ;
+  
   return (
     <div className="flex p-4">
       {/* <h2 className="text-xl font-bold mb-4">Cart</h2>   */}
