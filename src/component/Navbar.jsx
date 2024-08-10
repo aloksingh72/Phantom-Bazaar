@@ -29,12 +29,12 @@ function Navbar({cartCount}) {
           </Link>
           <Link
             to="/cart"
-            className="text-lg flex  items-center justify-center gap-2  font-semibold hover:scale-125 hover:text-yellow-300 transition duration-200 ease-in-out"
+            className="text-lg relative flex  items-center justify-center gap-2  font-semibold hover:scale-125 hover:text-yellow-300 transition duration-200 ease-in-out"
           >
             Cart
             <FaCartShopping />
             {cartCount > 0 && (
-              <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+              <span className="absolute  right-[-10px] top-[-10px]  bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
                 {cartCount}
               </span>
             )}

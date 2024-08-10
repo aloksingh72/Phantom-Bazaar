@@ -5,31 +5,12 @@ import Shop from "./component/Shop";
 import Admin from "./component/Admin";
 import Cart from "./component/Cart";
 import Navbar from "./component/Navbar";
+import { useCart } from "./component/pages/cart/useCart";
 
 
-function App() {
-  const [cartItems, setCartItems] = useState(() => {
-    // Load cart items from local storage if available
-    const savedCartItems = localStorage.getItem("cartItems");
-    return savedCartItems ? JSON.parse(savedCartItems) : [];
-  });
-
-  useEffect(() => {
-    // Save cart items to local storage whenever they change
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
-
-  const handleAddToCart = (product) => {
-    setCartItems((prevItems) => {
-      const itemExists = prevItems.find((item) => item.id === product.id);
-      if (itemExists) {
-        return prevItems.filter((item) => item.id !== product.id);
-      } else {
-        return [...prevItems, product];
-      }
-    });
-  };
-
+function App(){
+  const {cartItems,handleAddToCart,handleRemoveFromCart} =useCart();
+ 
   return (
     <div>
       <Navbar cartCount={cartItems.length} />
@@ -39,7 +20,7 @@ function App() {
           element={<Shop cartItems={cartItems} handleAddToCart={handleAddToCart} />}
         />
         <Route path="/admin" element={<Admin />} />
-        <Route path="/cart" element={<Cart cartItems={cartItems} />} />
+        <Route path="/cart" element={<Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} />} />
       </Routes>
     </div>
   );

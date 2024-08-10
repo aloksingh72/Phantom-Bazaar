@@ -1,7 +1,10 @@
 import React from "react";
 import { MdDeleteForever } from "react-icons/md";
 
-function Cart({ cartItems }) {
+function Cart({ cartItems,onRemoveFromCart }) {
+//calculate the total amount 
+  const totalAmount = cartItems.reduce((acc, item) => acc + item.price, 0);
+ 
   return (
     <div className="flex p-4">
       {/* <h2 className="text-xl font-bold mb-4">Cart</h2>   */}
@@ -35,7 +38,7 @@ function Cart({ cartItems }) {
                       ₹{item.price}
                     </p>
                     <MdDeleteForever
-                     className="mt-14 text-2xl ml-[350px] bg-orange-400 rounded-full"
+                     className="mt-14 text-2xl ml-[350px] bg-orange-400 cursor-pointer hover:scale-125 rounded-full"
                      onClick={()=>onRemoveFromCart(item.id)} />
                   </div>
                 </div>
@@ -55,7 +58,7 @@ function Cart({ cartItems }) {
         <p className="text-[20px] font-bold">Total Items:3</p>
 
         <div className="mt-[150px]">
-        <p className="font-semibold text-[20px]">Total Amount:$560</p>
+        <p className="font-semibold text-[20px]">Total Amount:₹{totalAmount}</p>
         <button className="bg-green-700 px-[60px] font-bold py-2 rounded-md text-white hover:scale-110 transition-all duration-200 mt-4">Checkout Now</button>
         </div>
 

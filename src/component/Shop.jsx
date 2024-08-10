@@ -50,7 +50,7 @@ function Shop({ cartItems, handleAddToCart }) {
   };
 
   // const handleRemoveFromCart = (itemId) => {
-  //   setCartItems(cartItems.filter((item) => item.id !== itemId));
+  //   cartItems(cartItems.filter((item) => item.id !== itemId));
   // };
 
   if (loading) return <p>Loading...</p>;
@@ -70,7 +70,7 @@ function Shop({ cartItems, handleAddToCart }) {
            handleAddToCart={handleAddToCart} cartItems={cartItems} />
         ))}
       </div>
-      {/* <Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} /> */}
+      
     </div>
   );
 }
