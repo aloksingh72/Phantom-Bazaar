@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function AddNewProduct() {
   const [categories, setCategories] = useState([]);
@@ -12,8 +14,9 @@ function AddNewProduct() {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const response = await axios.get("https://fakestoreapi.com/products/categories");
-        setCategories(["All", ...response.data]);
+        const response = await fetch("https://fakestoreapi.com/products/categories");
+        const data = await response.json();
+        setCategories(["All", ...data]);
       } catch (err) {
         console.error("Error fetching categories:", err);
       }
@@ -24,29 +27,42 @@ function AddNewProduct() {
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
   };
+
   const handleSubmit = async (e) => { 
-    e.preventDefault();// prevent default form submission
+    e.preventDefault(); // Prevent default form submission
 
     const newProduct = {
-        title:productName,
-        desciption:productDesc,
-        price:productPrice,
-        image:productImage,
-        category:selectedCategory
+      title: productName,
+      price: parseFloat(productPrice), // Ensure the price is a number
+      description: productDesc,
+      image: productImage,
+      category: selectedCategory,
     };
+
     try {
-        const response = await axios.post("'https://fakestoreapi.com/products", newProduct);
-        console.log("Product added:", response.data);
-        //  Form fields ko reset kar denge  after successful submission
-        setProductName("");
-        setProductDesc("");
-        setProductPrice("");
-        setProductImage("");
-        setSelectedCategory("");
-      } catch (err) {
-        console.error("Error in adding product:", err);
-      }
-};
+      const response = await fetch('https://fakestoreapi.com/products', {
+        method: "POST",
+        body: JSON.stringify(newProduct),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const data = await response.json();
+      console.log("Product added:", data);
+
+      toast.success("Product added successfully!");
+
+      // Reset form fields after successful submission
+      setProductName("");
+      setProductDesc("");
+      setProductPrice("");
+      setProductImage("");
+      setSelectedCategory("");
+    } catch (err) {
+      console.error("Error in adding product:", err);
+      toast.error("Error in adding product.");
+    }
+  };
 
   return (
     <div className="flex flex-col">
@@ -54,7 +70,7 @@ function AddNewProduct() {
         Add New Product Here
       </h1>
       <form
-        action="submit"
+        onSubmit={handleSubmit} // Add the onSubmit handler
         className="flex flex-col text-center mt-7 gap-y-6 border border-purple-600 p-4 rounded-xl"
       >
         <div>
@@ -65,8 +81,8 @@ function AddNewProduct() {
               type="text"
               placeholder="Enter Product Name"
               className="border border-black rounded-md ml-6"
-              value={productName} // Bind to state
-              onChange={(e) => setProductName(e.target.value)}// update state on input change
+              value={productName}
+              onChange={(e) => setProductName(e.target.value)}
             />
           </label>
         </div>
@@ -77,8 +93,8 @@ function AddNewProduct() {
               type="text"
               placeholder="Enter the Description"
               className="border border-black rounded-md ml-6"
-              value={productDesc}// bind the state
-              onChange={(e) => setProductDesc(e.target.value)}// update the description on input change
+              value={productDesc}
+              onChange={(e) => setProductDesc(e.target.value)}
             />
           </label>
         </div>
@@ -90,7 +106,7 @@ function AddNewProduct() {
               placeholder="Enter the Price"
               className="border border-black rounded-md ml-7"
               value={productPrice}
-              onChange={(e)=> setProductPrice(e.target.value)}
+              onChange={(e) => setProductPrice(e.target.value)}
             />
           </label>
         </div>
@@ -102,7 +118,7 @@ function AddNewProduct() {
               placeholder="Enter the Product Url"
               className="border border-black rounded-md ml-7"
               value={productImage}
-              onChange={(e)=>setProductImage(e.target.value)}
+              onChange={(e) => setProductImage(e.target.value)}
             />
           </label>
         </div>
@@ -121,10 +137,11 @@ function AddNewProduct() {
           </select>
         </div>
         
-        <button className="border hover:scale-125   transition duration-200 ease-in-out border-black w-[200px] ml-[650px] rounded-lg px-4 py-2 font-bold">
+        <button type="submit" className="border hover:scale-125 transition duration-200 ease-in-out border-black w-[200px] ml-[650px] rounded-lg px-4 py-2 font-bold">
           Post Data
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 }
