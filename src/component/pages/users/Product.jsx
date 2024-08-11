@@ -15,7 +15,8 @@ function Product({ product,handleAddToCart, cartItems }) {
         <div>
           <p className="w-40 text-gray-400 font-normal text-[10px] text-left ">
             
-            {product.description.length>20?(product.description.substring(0,70)) + "...":(product.description)}</p>
+            {product.description.length>20?
+            (product.description.substring(0,70)) + "...":(product.description)}</p>
         </div>
         <div className="h-[180px] mt-3">
           <img src={product.image} alt={product.title} className="h-full mx-auto" 

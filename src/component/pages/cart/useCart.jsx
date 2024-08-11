@@ -13,6 +13,7 @@ export const useCart = () => {
   const handleAddToCart = (product) => {
     setCartItems((prevItems) => {
       const itemExists = prevItems.find((item) => item.id === product.id);
+      // to prevent from adding same card multiple times...
       if (itemExists) {
         return prevItems.filter((item) => item.id !== product.id);
       } else {

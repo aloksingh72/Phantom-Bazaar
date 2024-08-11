@@ -30,6 +30,10 @@ function AddNewProduct() {
 
   const handleSubmit = async (e) => { 
     e.preventDefault(); // Prevent default form submission
+    if(!productName || !productPrice || !productDesc|| !productImage ||!selectedCategory){
+      toast.error("Please enter the details...");
+      return;
+    }
 
     const newProduct = {
       title: productName,
@@ -38,6 +42,7 @@ function AddNewProduct() {
       image: productImage,
       category: selectedCategory,
     };
+    // data is post using post method
 
     try {
       const response = await fetch('https://fakestoreapi.com/products', {
@@ -141,7 +146,18 @@ function AddNewProduct() {
           Post Data
         </button>
       </form>
-      <ToastContainer />
+      <ToastContainer 
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+      transition: Bounce/>
     </div>
   );
 }

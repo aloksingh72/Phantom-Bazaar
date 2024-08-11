@@ -52,8 +52,10 @@ function Shop({ cartItems, handleAddToCart }) {
   // const handleRemoveFromCart = (itemId) => {
   //   cartItems(cartItems.filter((item) => item.id !== itemId));
   // };
+<div>
 
-  if (loading) return <p>Loading...</p>;
+</div>
+  if (loading) return <div className="loader"><p ></p></div> 
   if (error) return <p>Error: {error.message}</p>;
 
   return (
