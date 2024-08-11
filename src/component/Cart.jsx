@@ -2,9 +2,16 @@ import React from "react";
 import { MdDeleteForever } from "react-icons/md";
 
 function Cart({ cartItems,onRemoveFromCart,cartCount }) {
-//calculate the total amount 
+//calculate the total amount
+// reduce method: reduce like a calulator that adds up all the prices in the list.
+// The reduce method is used to accumulate values in an array into a single value.
+//  It takes two arguments: 
+// 1.A callback function that defines how to accumulate the values.
+// 2.An initial value for the accumulator, in this case, 0 zero se start hoga...
+// acc is accumulator 
+
   const totalAmount = cartItems.reduce((acc, item) => acc + item.price, 0);
- 
+ console.log(totalAmount);
   
   return (
     <div className="flex p-4">
@@ -53,6 +60,7 @@ function Cart({ cartItems,onRemoveFromCart,cartCount }) {
         </ul>
         
       )}
+      {/* Right hand side div */}
       <div className="flex  ml-[250px] gap-x-[150px] flex-col">
         <p className="text-xl font-semibold text-green-600">Your Cart</p>
         <h2 className="text-[40px] font-semibold text-green-600">Summary</h2>
